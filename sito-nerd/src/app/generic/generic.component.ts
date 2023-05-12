@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Pokemon } from '../module';
 
 @Component({
   selector: 'app-generic',
@@ -8,22 +9,51 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
   styleUrls: ['./generic.component.css']
 })
 export class GenericComponent {
+  //@ts-ignore
+  guy: Data = {};
+  link: string = "";
+  xxx: Pokemon[] = []
+
   constructor(private route: ActivatedRoute, public http: HttpClient) {
-    //Gestisce i cambi di route con l'observable paramMap
-    this.route.paramMap.subscribe(this.getRouterParam);
-    console.log("balòòs");
-    
+    this.pleasefuckingwork("");
+    this.http.get("https://api.pokemontcg.io/v2/cards/").subscribe(baller => {
+        
+      //@ts-ignoreS
+      this.xxx  = baller.data.coins;
+    })
+
+    setInterval(() => {
+      this.http.get(this.link).subscribe(baller => {
+        //@ts-ignoreS
+        this.guy = baller;
+      })
+    }, 1000)
   }
 
-  //Ogni volta che viene invocata la route tracks/:id, l'observable paramMap richiama questo metodo
-  getRouterParam = (params: ParamMap) =>
-  {
+  pleasefuckingwork = (a: string) => {
+    if (a != "") {
+      this.link = "https://api.pokemontcg.io/v2/cards/" + a;
+    } else {
+      this.route.paramMap.subscribe(this.getRouterParam);
+    }
+ } 
+ getRouterParam = (params: ParamMap) =>
+  {    
     let uri_param = params.get('id'); //Ottengo l'id dalla ParamMap
-    //this.service.getTrack()
-    //if (uri_param == 'fruits') this.Vect = ;
-    //if (uri_param == 'animals') this.Vect = ;
+    
+    switch (uri_param) {
+      case "charmander":
+        this.link = "https://api.pokemontcg.io/v2/cards/ecard1-98" // -- charmander
+        break;
+      case "diglett":
+        this.link = "https://api.pokemontcg.io/v2/cards/sm5-78" // -- DIGLETT
+        break;
+      case "energia":
+        this.link = "https://api.pokemontcg.io/v2/cards/sm4-122" // -- energia
+        break;
+      case "snorlax":
+        this.link = "https://api.pokemontcg.io/v2/cards/swsh1-142" // -- snorlax
+        break;
+    }
   }
-}
-interface card {
-  name: string
 }
