@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Pokemon } from '../module';
 
+
 @Component({
   selector: 'app-generic',
   templateUrl: './generic.component.html',
@@ -12,35 +13,37 @@ export class GenericComponent {
   //@ts-ignore
   guy: Data = {};
   link: string = "";
-  xxx: Pokemon[] = []
+  xxx: Pokemon[] = [];
+
 
   constructor(private route: ActivatedRoute, public http: HttpClient) {
-    this.pleasefuckingwork("");
-    this.http.get("https://api.pokemontcg.io/v2/cards/").subscribe(baller => {
-        
-      //@ts-ignoreS
-      this.xxx  = baller.data.coins;
-    })
+    this.getId("");
+    this.http.get("https://api.pokemontcg.io/v2/cards/").subscribe(ball => {
+  })
 
-    setInterval(() => {
-      this.http.get(this.link).subscribe(baller => {
+
+  setInterval(() => {
+      this.http.get(this.link).subscribe(ball => {
         //@ts-ignoreS
-        this.guy = baller;
+        this.guy = ball;
       })
     }, 1000)
   }
 
-  pleasefuckingwork = (a: string) => {
+
+  getId = (a: string) => {
     if (a != "") {
       this.link = "https://api.pokemontcg.io/v2/cards/" + a;
     } else {
       this.route.paramMap.subscribe(this.getRouterParam);
     }
- } 
+ }
+
+
  getRouterParam = (params: ParamMap) =>
   {    
     let uri_param = params.get('id'); //Ottengo l'id dalla ParamMap
-    
+   
     switch (uri_param) {
       case "charmander":
         this.link = "https://api.pokemontcg.io/v2/cards/ecard1-98" // -- charmander
@@ -57,3 +60,5 @@ export class GenericComponent {
     }
   }
 }
+
+

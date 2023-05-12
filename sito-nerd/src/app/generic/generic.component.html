@@ -1,11 +1,22 @@
-<div class="box">
-    <h1 class="name">{{guy.data.name}}</h1>
-    <br>
-    <img class="img" alt="" src="{{guy.data.images.small}}">
+<div>
+    <button (click)="getRouterParam" routerLink="/generic/charmander">Charmander</button>
+    <button (click)="getRouterParam" routerLink="/generic/diglett">Diglett</button>
+    <button (click)="getRouterParam" routerLink="/generic/energia">Energia</button>
+    <button (click)="getRouterParam" routerLink="/generic/snorlax">Snorlax</button>
 </div>
-<button (click)="getRouterParam" routerLink="/generic/charmander">charmander</button>
-<button (click)="getRouterParam" routerLink="/generic/diglett">diglett</button>
-<button (click)="getRouterParam" routerLink="/generic/energia">energia</button>
-<button (click)="getRouterParam" routerLink="/generic/snorlax">snorlax</button>
 <br>
-<button *ngFor="let item of xxx" (click)="pleasefuckingwork(item.rarity)">{{item.name}}</button>
+<div>
+    <h1>{{guy.data.name}}</h1>
+    <br>
+    <img src="{{guy.data.images.small}}">
+</div>
+<br>
+<div>
+    <p>HP: {{guy.data.hp}}</p>
+    <p>Type: {{guy.data.types}}</p>
+    <p>Evolution: {{guy.data.evolvesTo}}</p>
+    <p>Attacks: {{guy.data.attacks}}</p>
+    <p>Weaknesses: {{guy.data.weaknesses}}</p>
+    <p>Artista: {{guy.data.artist}}</p>
+    <p>Rarity: {{guy.data.rarity}}</p>
+</div>
