@@ -1,8 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Pokemon } from '../module';
-
 
 @Component({
   selector: 'app-generic',
@@ -13,14 +11,15 @@ export class GenericComponent {
   //@ts-ignore
   guy: Data = {};
   link: string = "";
-  xxx: Pokemon[] = [];
 
   searchText!: string;
   cardData: any;
+  cardList!: any[];
 
   constructor(private route: ActivatedRoute, public http: HttpClient) {
     this.getId("");
     this.http.get("https://api.pokemontcg.io/v2/cards/").subscribe(ball => {
+    // Aggiorna il tuo oggetto "guy" o esegui altre operazioni in base alla risposta
   })
 
 
@@ -32,7 +31,6 @@ export class GenericComponent {
     }, 1000)
   }
 
-
   getId = (a: string) => {
     if (a != "") {
       this.link = "https://api.pokemontcg.io/v2/cards/" + a;
@@ -40,7 +38,6 @@ export class GenericComponent {
       this.route.paramMap.subscribe(this.getRouterParam);
     }
  }
-
 
  getRouterParam = (params: ParamMap) =>
   {    
@@ -63,12 +60,13 @@ export class GenericComponent {
   }
 
   searchCard() {
-    if (this.searchText) {
-      const apiUrl = `https://api.pokemontcg.io/v2/cards?q=name:${this.searchText}`;
-
-      this.http.get(apiUrl).subscribe((data: any) => {
-        this.cardData = data.data;
-      });
+    if (this.searchText && this.searchText.length >= 1) {
+      this.http.get(`https://api.pokemontcg.io/v2/cards?q=name:${this.searchText}*`)
+        .subscribe((response: any) => {
+          this.cardList = response.data;
+        });
+    } else {
+      this.cardList = [];
     }
   }
 }
