@@ -4,6 +4,9 @@ import { HttpClientModule } from '@angular/common/http'; //Importa Il modulo htt
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GenericComponent } from './generic/generic.component';
+import { FormsModule } from '@angular/forms';
+
+
 
 @NgModule({
   declarations: [
@@ -13,7 +16,8 @@ import { GenericComponent } from './generic/generic.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserModule, HttpClientModule //Aggiungi il modulo http qui 
+    BrowserModule, HttpClientModule, //Aggiungi il modulo http qui 
+    FormsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

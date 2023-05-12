@@ -15,6 +15,8 @@ export class GenericComponent {
   link: string = "";
   xxx: Pokemon[] = [];
 
+  searchText!: string;
+  cardData: any;
 
   constructor(private route: ActivatedRoute, public http: HttpClient) {
     this.getId("");
@@ -57,6 +59,16 @@ export class GenericComponent {
       case "snorlax":
         this.link = "https://api.pokemontcg.io/v2/cards/swsh1-142" // -- snorlax
         break;
+    }
+  }
+
+  searchCard() {
+    if (this.searchText) {
+      const apiUrl = `https://api.pokemontcg.io/v2/cards?q=name:${this.searchText}`;
+
+      this.http.get(apiUrl).subscribe((data: any) => {
+        this.cardData = data.data;
+      });
     }
   }
 }

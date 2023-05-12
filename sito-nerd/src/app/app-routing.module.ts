@@ -4,8 +4,8 @@ import { GenericComponent } from './generic/generic.component';
 
 const routes: Routes = [
   //vanno messi i vari path
+  { path: '', redirectTo: '/generic', pathMatch: 'full'},
   { path: 'generic/:id', component: GenericComponent },
-  { path: '', redirectTo: '/generic/', pathMatch: 'full'},
   //va messo il path generic che contiene le altre 5 pagine
 ];
 
