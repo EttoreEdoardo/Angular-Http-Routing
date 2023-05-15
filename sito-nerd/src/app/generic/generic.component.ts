@@ -21,9 +21,7 @@ export class GenericComponent {
     this.http.get("https://api.pokemontcg.io/v2/cards/").subscribe(ball => {
     // Aggiorna il tuo oggetto "guy" o esegui altre operazioni in base alla risposta
   })
-
-
-  setInterval(() => {
+    setInterval(() => {
       this.http.get(this.link).subscribe(ball => {
         //@ts-ignoreS
         this.guy = ball;

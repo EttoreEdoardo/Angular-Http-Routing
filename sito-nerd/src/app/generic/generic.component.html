@@ -27,9 +27,9 @@
     <h2>Risultati della ricerca:</h2>
     <ul>
       <li *ngFor="let card of cardList">
-        <img [src]="card.images.small" alt="{{ card.name }}">
-        <h3>{{ card.name }}</h3>
-        <p>Rarità: {{ card.rarity }}</p>
+        <img [src]="card.images.small" alt="{{card.name}}">
+        <h3>{{card.name}}</h3>
+        <p>Rarità: {{card.rarity}}</p>
       </li>
     </ul>
 </div>
